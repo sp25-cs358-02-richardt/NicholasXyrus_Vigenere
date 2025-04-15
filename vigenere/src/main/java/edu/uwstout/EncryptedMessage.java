@@ -8,6 +8,15 @@ public class EncryptedMessage {
         //warning:  do not store the unencrytped message in a 
         //  private member variable.
 
+        int offset = key.charAt(0) - 'a';
+
+        char [] msgArray = msg.toCharArray();
+        for(int i = 0; i < msg.length(); i++) {
+            msgArray[i] += offset;
+        }
+
+        mEncryptedMsg = new String(msgArray);
+
     }
 
     public EncryptedMessage(String encryptedMsg) {
@@ -17,7 +26,7 @@ public class EncryptedMessage {
     }
 
     public String getMessage() throws Exception {
-        return null;
+        return mEncryptedMsg;
     }
 
     public String decryptMessage(String key) throws Exception {

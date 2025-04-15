@@ -10,9 +10,9 @@ public class EncryptedMessageTest {
     @Test
     void testGetMessage() {
         
-        EncryptedMessage message = new EncryptedMessage("hello","a");
+        EncryptedMessage message = new EncryptedMessage("hello","b");
         try {
-            assertEquals("hello", message.getMessage());
+            assertEquals("ifmmp", message.getMessage());
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
