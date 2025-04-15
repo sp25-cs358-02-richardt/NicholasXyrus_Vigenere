@@ -7,14 +7,15 @@ public class EncryptedMessage {
     public EncryptedMessage(String msg, String key) {
         //warning:  do not store the unencrytped message in a 
         //  private member variable.
-
+        msg = msg.toLowerCase();
+        key = key.toLowerCase();
         char [] msgArray = msg.toCharArray();
         for(int i = 0; i < msg.length(); i++) {
             int offset = key.charAt(i % key.length()) - 'a';
             msgArray[i] += offset;
         }
 
-        mEncryptedMsg = new String(msgArray).toLowerCase();
+        mEncryptedMsg = new String(msgArray);
 
     }
 
