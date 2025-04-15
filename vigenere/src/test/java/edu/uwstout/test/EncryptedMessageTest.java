@@ -44,7 +44,7 @@ public class EncryptedMessageTest {
     }
 
     @Test
-    void testMixedCaseKey() {
+    void testMixedCase() {
         
         EncryptedMessage message = new EncryptedMessage("Hello","BabA");
         try {
@@ -58,9 +58,21 @@ public class EncryptedMessageTest {
     @Test
     void testConvertingSpacesToCurlyBracket() {
         
-        EncryptedMessage message = new EncryptedMessage("hello world","BabA");
+        EncryptedMessage message = new EncryptedMessage("hello world","a");
         try {
-            assertEquals("iemlp", message.getMessage());
+            assertEquals("hello}world", message.getMessage());
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testInvalidChar() {
+        
+        EncryptedMessage message = new EncryptedMessage("he/him","a");
+        try {
+            assertEquals(null, message.getMessage());
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
