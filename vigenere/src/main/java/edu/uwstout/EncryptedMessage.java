@@ -8,13 +8,16 @@ public class EncryptedMessage {
         //warning:  do not store the unencrytped message in a 
         //  private member variable.
         try {
-        msg = msg.replace(' ', '}').toLowerCase();
+        msg = msg.replace(' ', '{').toLowerCase();
         key = key.toLowerCase();
         char [] msgArray = msg.toCharArray();
         for(int i = 0; i < msg.length(); i++) {
             if(Character.isLetter(msgArray[i]) || msgArray[i] == '{') {
                 int offset = key.charAt(i % key.length());
                 if(Character.isLetter(offset) || offset == '{') {
+                    if(msgArray[i] == '{' && offset > 'a') {
+                        msgArray[i] = 'a' - 1;
+                    }
                 offset -= 'a';
                 msgArray[i] += offset;
                 }

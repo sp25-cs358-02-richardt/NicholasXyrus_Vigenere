@@ -60,7 +60,7 @@ public class EncryptedMessageTest {
         
         EncryptedMessage message = new EncryptedMessage("hello world","a");
         try {
-            assertEquals("hello}world", message.getMessage());
+            assertEquals("hello{world", message.getMessage());
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
@@ -68,11 +68,51 @@ public class EncryptedMessageTest {
     }
 
     @Test
-    void testInvalidChar() {
+    void testInvalidCharInMessage() {
         
         EncryptedMessage message = new EncryptedMessage("he/him","a");
         try {
             assertEquals(null, message.getMessage());
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testInvalidCharInKey() {
+        
+        EncryptedMessage message = new EncryptedMessage("hello world","2");
+        try {
+            assertEquals(null, message.getMessage());
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testRollOver() {
+        
+        EncryptedMessage message = new EncryptedMessage("hello world","a");
+        try {
+            assertEquals("hello{world", message.getMessage()); 
+            EncryptedMessage newMessage = new EncryptedMessage(message.getMessage(), "b");
+            assertEquals("ifmmpaxpsme", newMessage.getMessage());
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testRollOverLongerKey() {
+        
+        EncryptedMessage message = new EncryptedMessage("hello world","ab");
+        try {
+            assertEquals("hflmoawprmd", message.getMessage()); 
+            EncryptedMessage newMessage = new EncryptedMessage(message.getMessage(), "ab");
+            assertEquals("hglnobwqrnd", newMessage.getMessage());
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
