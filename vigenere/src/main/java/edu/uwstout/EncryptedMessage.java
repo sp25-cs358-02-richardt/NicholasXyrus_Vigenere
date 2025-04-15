@@ -10,7 +10,7 @@ public class EncryptedMessage {
 
         char [] msgArray = msg.toCharArray();
         for(int i = 0; i < msg.length(); i++) {
-            int offset = key.charAt(i) - 'a';
+            int offset = key.charAt(i % key.length()) - 'a';
             msgArray[i] += offset;
         }
 
