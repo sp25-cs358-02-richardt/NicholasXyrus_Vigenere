@@ -44,6 +44,18 @@ public class EncryptedMessageTest {
     }
 
     @Test
+    void testMixedCaseKey() {
+        
+        EncryptedMessage message = new EncryptedMessage("hello","BabA");
+        try {
+            assertEquals("iemlp", message.getMessage());
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     void testDecryptMessage() {
         EncryptedMessage message = new EncryptedMessage("hello");
         try {

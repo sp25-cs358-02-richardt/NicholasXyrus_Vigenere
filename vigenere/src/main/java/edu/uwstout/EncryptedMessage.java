@@ -14,7 +14,7 @@ public class EncryptedMessage {
             msgArray[i] += offset;
         }
 
-        mEncryptedMsg = new String(msgArray);
+        mEncryptedMsg = new String(msgArray).toLowerCase();
 
     }
 
