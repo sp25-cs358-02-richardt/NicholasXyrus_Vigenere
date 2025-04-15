@@ -8,10 +8,9 @@ public class EncryptedMessage {
         //warning:  do not store the unencrytped message in a 
         //  private member variable.
 
-        int offset = key.charAt(0) - 'a';
-
         char [] msgArray = msg.toCharArray();
         for(int i = 0; i < msg.length(); i++) {
+            int offset = key.charAt(i) - 'a';
             msgArray[i] += offset;
         }
 

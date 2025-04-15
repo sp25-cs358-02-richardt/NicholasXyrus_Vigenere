@@ -10,9 +10,33 @@ public class EncryptedMessageTest {
     @Test
     void testGetMessage() {
         
-        EncryptedMessage message = new EncryptedMessage("hello","b");
+        EncryptedMessage message = new EncryptedMessage("hello","c");
         try {
-            assertEquals("ifmmp", message.getMessage());
+            assertEquals("jgnnq", message.getMessage());
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testMultiLetterKeyGetMessage() {
+        
+        EncryptedMessage message = new EncryptedMessage("hello","babab");
+        try {
+            assertEquals("iemlp", message.getMessage());
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testShorterKeyThanMessage() {
+        
+        EncryptedMessage message = new EncryptedMessage("hello","baba");
+        try {
+            assertEquals("iemlp", message.getMessage());
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
