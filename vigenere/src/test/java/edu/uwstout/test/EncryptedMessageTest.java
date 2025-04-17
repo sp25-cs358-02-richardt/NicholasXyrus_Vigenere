@@ -72,9 +72,10 @@ public class EncryptedMessageTest {
         
         EncryptedMessage message = new EncryptedMessage("he/him","a");
         try {
-            assertEquals(null, message.getMessage());
+            assertEquals("hehim", message.getMessage());
         } catch (Exception e) {
-            fail("Unexpected exception on getMesage");
+            fail("Unexpected Exception.");
+            
             e.printStackTrace();
         }
     }
@@ -85,8 +86,9 @@ public class EncryptedMessageTest {
         EncryptedMessage message = new EncryptedMessage("hello world","2");
         try {
             assertEquals(null, message.getMessage());
+            fail("Expected an exception");
         } catch (Exception e) {
-            fail("Unexpected exception on getMesage");
+            assertEquals(e.getMessage(),"Unauthorized Use");
             e.printStackTrace();
         }
     }
@@ -158,9 +160,10 @@ public class EncryptedMessageTest {
     void testDecryptInvalidMessage() {
         EncryptedMessage message = new EncryptedMessage("h,{10");
         try {
-            assertEquals(null, message.decryptMessage("a"));
+            assertEquals("h ", message.decryptMessage("a"));
         } catch (Exception e) {
-            fail("Unexpected exception on getMesage");
+            fail("Unexpected Exception.");
+            
             e.printStackTrace();
         }
     }
