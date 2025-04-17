@@ -133,9 +133,9 @@ public class EncryptedMessageTest {
 
     @Test
     void testDecryptMultiLetterKeyLongerThanMessage() {
-        EncryptedMessage message = new EncryptedMessage("hello");
+        EncryptedMessage message = new EncryptedMessage("jinpq");
         try {
-            assertEquals("jinpq", message.decryptMessage("cecece"));
+            assertEquals("hello", message.decryptMessage("cecece"));
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
