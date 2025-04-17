@@ -49,7 +49,14 @@ public class EncryptedMessage {
     }
 
     public String decryptMessage(String key) throws Exception {
-        return mEncryptedMsg;
+        key = key.toLowerCase();
+        char [] msgArray = mEncryptedMsg.toCharArray();
+        for (int i=0; i < msgArray.length; i++) {
+            int offset = key.charAt(0);
+            msgArray[i] -= 'a' - offset;
+        }
+
+        return new String(msgArray);
     }
 
     //add any private helper methods that you would like to use

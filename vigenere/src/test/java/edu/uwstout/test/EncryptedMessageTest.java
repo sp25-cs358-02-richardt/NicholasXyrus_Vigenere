@@ -120,10 +120,10 @@ public class EncryptedMessageTest {
     }
 
     @Test
-    void testDecryptMessage() {
+    void testDecryptSingleLetterKey() {
         EncryptedMessage message = new EncryptedMessage("hello");
         try {
-            assertEquals("hello", message.decryptMessage("a"));
+            assertEquals("jgnnq", message.decryptMessage("c"));
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
