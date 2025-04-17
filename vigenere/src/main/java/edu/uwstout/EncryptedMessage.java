@@ -51,12 +51,22 @@ public class EncryptedMessage {
     public String decryptMessage(String key) throws Exception {
         key = key.toLowerCase();
         char [] msgArray = mEncryptedMsg.toLowerCase().toCharArray();
-        for (int i=0; i < msgArray.length; i++) {
-            int offset = key.charAt(i % key.length());
-            msgArray[i] += 'a' - offset;
+        try {
+            for (int i=0; i < msgArray.length; i++) {
+                if (Character.isLetter(msgArray[i]) || msgArray[i] == '{') {
+                    int offset = key.charAt(i % key.length());
+                    msgArray[i] += 'a' - offset;
+                } else {
+                    throw new Exception();
+                }
+            }
+            return new String(msgArray);
         }
+        catch (Exception e) {
+            mEncryptedMsg = null;
 
-        return new String(msgArray);
+        }
+        return null;
     }
 
     //add any private helper methods that you would like to use

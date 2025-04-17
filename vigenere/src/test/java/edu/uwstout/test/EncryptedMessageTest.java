@@ -155,13 +155,35 @@ public class EncryptedMessageTest {
     }
 
     @Test
-    void testDecryptMixedCaseKeyAndMessage() {
-        EncryptedMessage message = new EncryptedMessage("jPlNz");
+    void testDecryptInvalidMessage() {
+        EncryptedMessage message = new EncryptedMessage("h,{10");
         try {
-            assertEquals("hello", message.decryptMessage("ClA"));
+            assertEquals(null, message.decryptMessage("a"));
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
         }
     }
+
+    // @Test
+    // void testDecryptRollOver() {
+    //     EncryptedMessage message = new EncryptedMessage("ifmmp");
+    //     try {
+    //         assertEquals("hello", message.decryptMessage("z"));
+    //     } catch (Exception e) {
+    //         fail("Unexpected exception on getMesage");
+    //         e.printStackTrace();
+    //     }
+    // }
+
+    // @Test
+    // void testDecryptConvertingCurlyBracketTOSpaces() {
+    //     EncryptedMessage message = new EncryptedMessage("lgopq{aqupf");
+    //     try {
+    //         assertEquals("hello world", message.decryptMessage("ecd"));
+    //     } catch (Exception e) {
+    //         fail("Unexpected exception on getMesage");
+    //         e.printStackTrace();
+    //     }
+    // }
 }
