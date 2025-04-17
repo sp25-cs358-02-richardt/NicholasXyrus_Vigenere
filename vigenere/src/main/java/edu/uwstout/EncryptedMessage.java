@@ -57,6 +57,9 @@ public class EncryptedMessage {
                     int offset = key.charAt(i % key.length());
                     if (Character.isLetter(offset) || offset == '{') {
                         msgArray[i] += 'a' - offset;
+                        if (msgArray[i] < 'a') {
+                            msgArray[i] = (char) (msgArray[i] % 27 + 107);
+                        }
                     } else {
                         throw new Exception();
                     }
@@ -70,7 +73,7 @@ public class EncryptedMessage {
             mEncryptedMsg = null;
 
         }
-        return null;
+        return mEncryptedMsg;
     }
 
     //add any private helper methods that you would like to use

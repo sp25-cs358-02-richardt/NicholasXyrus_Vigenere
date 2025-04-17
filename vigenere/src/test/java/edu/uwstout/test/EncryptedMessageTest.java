@@ -176,16 +176,16 @@ public class EncryptedMessageTest {
         }
     }
 
-    // @Test
-    // void testDecryptRollOver() {
-    //     EncryptedMessage message = new EncryptedMessage("ifmmp");
-    //     try {
-    //         assertEquals("hello", message.decryptMessage("z"));
-    //     } catch (Exception e) {
-    //         fail("Unexpected exception on getMesage");
-    //         e.printStackTrace();
-    //     }
-    // }
+    @Test
+    void testDecryptRollOver() {
+        EncryptedMessage message = new EncryptedMessage("dfh");
+        try {
+            assertEquals("xyz", message.decryptMessage("ghi"));
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
 
     // @Test
     // void testDecryptConvertingCurlyBracketTOSpaces() {
