@@ -41,7 +41,7 @@ public class EncryptedMessage {
     public EncryptedMessage(String encryptedMsg) {
         //warning:  do not store the unencrytped message in a 
         //  private member variable.
-
+        mEncryptedMsg = encryptedMsg;
     }
 
     public String getMessage() throws Exception {
@@ -49,7 +49,7 @@ public class EncryptedMessage {
     }
 
     public String decryptMessage(String key) throws Exception {
-        return null;
+        return mEncryptedMsg;
     }
 
     //add any private helper methods that you would like to use
