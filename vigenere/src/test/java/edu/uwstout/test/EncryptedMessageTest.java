@@ -165,6 +165,17 @@ public class EncryptedMessageTest {
         }
     }
 
+    @Test
+    void testDecryptInvalidKey() {
+        EncryptedMessage message = new EncryptedMessage("hello");
+        try {
+            assertEquals(null, message.decryptMessage("1"));
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
+
     // @Test
     // void testDecryptRollOver() {
     //     EncryptedMessage message = new EncryptedMessage("ifmmp");

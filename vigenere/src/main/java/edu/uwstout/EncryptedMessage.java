@@ -55,7 +55,11 @@ public class EncryptedMessage {
             for (int i=0; i < msgArray.length; i++) {
                 if (Character.isLetter(msgArray[i]) || msgArray[i] == '{') {
                     int offset = key.charAt(i % key.length());
-                    msgArray[i] += 'a' - offset;
+                    if (Character.isLetter(offset) || offset == '{') {
+                        msgArray[i] += 'a' - offset;
+                    } else {
+                        throw new Exception();
+                    }
                 } else {
                     throw new Exception();
                 }
