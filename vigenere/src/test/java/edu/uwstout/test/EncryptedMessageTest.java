@@ -132,7 +132,7 @@ public class EncryptedMessageTest {
     }
 
     @Test
-    void testDecryptMultiLetterKeySameLength() {
+    void testDecryptMultiLetterKeySameLengthAsMessage() {
         EncryptedMessage message = new EncryptedMessage("hello");
         try {
             assertEquals("jinpq", message.decryptMessage("cecec"));
