@@ -131,5 +131,15 @@ public class EncryptedMessageTest {
 
     }
 
-   
+    @Test
+    void testDecryptMultiLetterKeySameLength() {
+        EncryptedMessage message = new EncryptedMessage("hello");
+        try {
+            assertEquals("jinpq", message.decryptMessage("cecec"));
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+
+    }
 }
