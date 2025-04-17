@@ -50,7 +50,7 @@ public class EncryptedMessage {
 
     public String decryptMessage(String key) throws Exception {
         key = key.toLowerCase();
-        char [] msgArray = mEncryptedMsg.toCharArray();
+        char [] msgArray = mEncryptedMsg.toLowerCase().toCharArray();
         for (int i=0; i < msgArray.length; i++) {
             int offset = key.charAt(i % key.length());
             msgArray[i] -= 'a' - offset;

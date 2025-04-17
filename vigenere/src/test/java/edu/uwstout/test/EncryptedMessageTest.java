@@ -152,6 +152,16 @@ public class EncryptedMessageTest {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
         }
+    }
 
+    @Test
+    void testDecryptMixedCaseKeyAndMessage() {
+        EncryptedMessage message = new EncryptedMessage("HEllO");
+        try {
+            assertEquals("jplnz", message.decryptMessage("ClA"));
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
     }
 }
