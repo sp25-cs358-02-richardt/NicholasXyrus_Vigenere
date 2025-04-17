@@ -53,7 +53,7 @@ public class EncryptedMessage {
         char [] msgArray = mEncryptedMsg.toLowerCase().toCharArray();
         for (int i=0; i < msgArray.length; i++) {
             int offset = key.charAt(i % key.length());
-            msgArray[i] -= 'a' - offset;
+            msgArray[i] += 'a' - offset;
         }
 
         return new String(msgArray);

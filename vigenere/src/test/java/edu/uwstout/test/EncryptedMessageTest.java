@@ -121,9 +121,9 @@ public class EncryptedMessageTest {
 
     @Test
     void testDecryptSingleLetterKey() {
-        EncryptedMessage message = new EncryptedMessage("hello");
+        EncryptedMessage message = new EncryptedMessage("jgnnq");
         try {
-            assertEquals("jgnnq", message.decryptMessage("c"));
+            assertEquals("hello", message.decryptMessage("c"));
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
