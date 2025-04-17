@@ -178,23 +178,23 @@ public class EncryptedMessageTest {
 
     @Test
     void testDecryptRollOver() {
-        EncryptedMessage message = new EncryptedMessage("dfh");
+        EncryptedMessage message = new EncryptedMessage("a");
         try {
-            assertEquals("xyz", message.decryptMessage("ghi"));
+            assertEquals("z", message.decryptMessage("c"));
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
         }
     }
 
-    // @Test
-    // void testDecryptConvertingCurlyBracketTOSpaces() {
-    //     EncryptedMessage message = new EncryptedMessage("lgopq{aqupf");
-    //     try {
-    //         assertEquals("hello world", message.decryptMessage("ecd"));
-    //     } catch (Exception e) {
-    //         fail("Unexpected exception on getMesage");
-    //         e.printStackTrace();
-    //     }
-    // }
+    @Test
+    void testDecryptConvertingCurlyBracketTOSpaces() {
+        EncryptedMessage message = new EncryptedMessage("ifmmpaxpsme");
+        try {
+            assertEquals("hello world", message.decryptMessage("b"));
+        } catch (Exception e) {
+            fail("Unexpected exception on getMesage");
+            e.printStackTrace();
+        }
+    }
 }
