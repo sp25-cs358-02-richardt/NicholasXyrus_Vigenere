@@ -22,11 +22,11 @@ public class EncryptedMessage {
                 msgArray[i] += offset;
                 }
                 else {
-                    throw new Exception();
+                    throw new Exception("Unauthorized Use");
                 }
             }
             else {
-                throw new Exception();
+                throw new Exception("Unauthorized Use");
             }
         }
         mEncryptedMsg = new String(msgArray);
@@ -64,10 +64,10 @@ public class EncryptedMessage {
                             msgArray[i] = ' ';
                         }
                     } else {
-                        throw new Exception();
+                        throw new Exception("Unauthorized Use");
                     }
                 } else {
-                    throw new Exception();
+                    throw new Exception("Unauthorized Use");
                 }
             }
             return new String(msgArray);
