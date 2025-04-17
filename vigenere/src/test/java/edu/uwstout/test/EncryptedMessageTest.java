@@ -156,9 +156,9 @@ public class EncryptedMessageTest {
 
     @Test
     void testDecryptMixedCaseKeyAndMessage() {
-        EncryptedMessage message = new EncryptedMessage("HEllO");
+        EncryptedMessage message = new EncryptedMessage("jPlNz");
         try {
-            assertEquals("jplnz", message.decryptMessage("ClA"));
+            assertEquals("hello", message.decryptMessage("ClA"));
         } catch (Exception e) {
             fail("Unexpected exception on getMesage");
             e.printStackTrace();
