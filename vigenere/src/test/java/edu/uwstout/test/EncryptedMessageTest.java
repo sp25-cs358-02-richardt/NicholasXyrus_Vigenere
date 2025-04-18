@@ -173,8 +173,9 @@ public class EncryptedMessageTest {
         EncryptedMessage message = new EncryptedMessage("hello");
         try {
             assertEquals(null, message.decryptMessage("1"));
+            fail("Expected an exception");
         } catch (Exception e) {
-            fail("Unexpected exception on getMesage");
+            assertEquals(e.getMessage(),"Unauthorized Use");
             e.printStackTrace();
         }
     }

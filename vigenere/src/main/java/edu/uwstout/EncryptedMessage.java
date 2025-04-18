@@ -35,8 +35,6 @@ public class EncryptedMessage {
     }
 
     public EncryptedMessage(String encryptedMsg) {
-        //warning:  do not store the unencrytped message in a 
-        //  private member variable.
         mEncryptedMsg = encryptedMsg;
     }
 
@@ -47,30 +45,34 @@ public class EncryptedMessage {
         return mEncryptedMsg;
     }
 
+    // Decrypts the mEncryptedMsg variable using key. If the key has character that are not letters
+    // or '{' then the Unauthorized Use Exception is thown. Invalid characters as defined previously
+    // are instead dropped if contained in mEncryptedMsg. 
     public String decryptMessage(String key) throws Exception {
         if (!key.matches("[a-zA-Z]+")){
-            mEncryptedMsg = null;
-            return null;
+            throw new Exception("Unauthorized Use");
         }
+
         key = key.toLowerCase();
-        
+        // removes the invalid characters from mEncryptedMsg sets it to lowercase and creates the
+        // char array msgArray using the chars in the String.
         char [] msgArray = mEncryptedMsg.replaceAll("[^A-Za-z\\{]","").toLowerCase().toCharArray();
         for (int i=0; i < msgArray.length; i++) {
             if (Character.isLetter(msgArray[i]) || msgArray[i] == '{') {
+                // The offset is limited to the range on key's length.
                 int offset = key.charAt(i % key.length());
-                if (Character.isLetter(offset) || offset == '{') {
-                    msgArray[i] += 'a' - offset;
-                    if (msgArray[i] < 'a') {
-                        msgArray[i] = (char) (msgArray[i] % 27 + 108);
-                    }
-                    if (msgArray[i] == '{') {
-                        msgArray[i] = ' ';
-                    }
+                // The first lowercase letter ascii is subtracted from the offset  
+                msgArray[i] -= offset - 'a';
+                // msgArray[i] is increased by 11 so that 'a' will result in 0 when modded by 27
+                // then 97 is added to align it back with the lower case letter.
+                msgArray[i] = (char) ((msgArray[i] + 11) % 27 + 97);
+                // If the char '{' if found replace it it a space char ' '. 
+                if (msgArray[i] == '{') {
+                    msgArray[i] = ' ';
                 }
             }
         }
+        // The decrypted message.
         return new String(msgArray);
     }
-
-    //add any private helper methods that you would like to use
 }
