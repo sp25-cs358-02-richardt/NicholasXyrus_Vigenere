@@ -34,6 +34,7 @@ public class EncryptedMessage {
 
     }
 
+    // EncryptedMessage constructor takes encryptedMsg and places it in the mEncryptedMsg variable.
     public EncryptedMessage(String encryptedMsg) {
         mEncryptedMsg = encryptedMsg;
     }
