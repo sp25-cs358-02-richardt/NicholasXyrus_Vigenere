@@ -39,6 +39,7 @@ public class EncryptedMessage {
         mEncryptedMsg = encryptedMsg;
     }
 
+    // Returns the String mEncryptedMsg. If mEncryptedMsg is null Unauthorized Use Exception is thrown.
     public String getMessage() throws Exception {
         if (mEncryptedMsg==null) {
             throw new Exception("Unauthorized Use");
