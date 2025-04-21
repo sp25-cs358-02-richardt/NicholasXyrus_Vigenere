@@ -1,13 +1,18 @@
 package edu.uwstout;
 
+    /*
+     * EncryptedMessage class encrypt and decrypt a message with a key using a vigenere cipher
+     * @author Nick, Xyrus
+     */ 
 public class EncryptedMessage {
 
     String mEncryptedMsg;  //holds the encrypted message
 
-    // Encrypts a String msg with a String key using a vigenere cipher. Only accepts alphabetical
-    // and space characters. The message is converted to lowercase and spaces are replaced with '{'.
-    // mEncryptedMsg is set to null if the key contains invalid characters. If the msg contains
-    // invalid characters the invalid characters are dropped.
+    /*
+     * Constructor for EncryptedMessage
+     * @param msg the unencrypted message
+     * @param key the encryption key
+     */
     public EncryptedMessage(String msg, String key) {
         // Regex that determines that if the key does not contain only letters if that is the case
         // set mEncryptedMsg to null and return.
@@ -43,16 +48,21 @@ public class EncryptedMessage {
         }
         // convert the character array msgArray into a String and replace mEncryptedMsg with the value.
         mEncryptedMsg = new String(msgArray);
-        
-
     }
 
-    // EncryptedMessage constructor takes encryptedMsg and places it in the mEncryptedMsg variable.
+    /*
+     * Constructor for EncryptedMessage
+     * @param encryptedMsg the encrypted message
+     */
     public EncryptedMessage(String encryptedMsg) {
         mEncryptedMsg = encryptedMsg;
     }
 
-    // Returns the String mEncryptedMsg. If mEncryptedMsg is null Unauthorized Use Exception is thrown.
+    /*
+     * The mEncryptedMsg of EncryptedMessage
+     * @return the encrypted message
+     * @throws "Unauthorized Use" if mEncryptedMsg is null
+     */
     public String getMessage() throws Exception {
         if (mEncryptedMsg==null) {
             throw new Exception("Unauthorized Use");
@@ -60,9 +70,12 @@ public class EncryptedMessage {
         return mEncryptedMsg;
     }
 
-    // Decrypts the mEncryptedMsg variable using key. If the key has character that are not letters
-    // or '{' then the Unauthorized Use Exception is thown. Invalid characters as defined previously
-    // are instead dropped if contained in mEncryptedMsg. 
+    /*
+     * Decrypts EncryptedMessage's mEncryptedMsg using a key
+     * @param key the encryption key
+     * @return the decrypted message
+     * @throws "Unauthorized Use" if mEncryptedMsg is null
+     */
     public String decryptMessage(String key) throws Exception {
         if (!key.matches("[a-zA-Z]+")){
             throw new Exception("Unauthorized Use");
