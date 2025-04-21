@@ -4,31 +4,44 @@ public class EncryptedMessage {
 
     String mEncryptedMsg;  //holds the encrypted message
 
+    // Encrypts a String msg with a String key using a vigenere cipher. Only accepts alphabetical
+    // and space characters. The message is converted to lowercase and spaces are replaced with '{'.
+    // mEncryptedMsg is set to null if the key contains invalid characters. If the msg contains
+    // invalid characters the invalid characters are dropped.
     public EncryptedMessage(String msg, String key) {
-        //warning:  do not store the unencrytped message in a 
-        //  private member variable.
-
+        // Regex that determines that if the key does not contain only letters if that is the case
+        // set mEncryptedMsg to null and return.
         if (!key.matches("[a-zA-Z]+")){
             mEncryptedMsg = null;
             return;
         }
         
+        // replaces spaces with '{', any invalid character with a blank space, sets all the text
+        // to lowercase and finally converts the msg to a character array msgArray.
         msg = msg.replace(' ', '{').toLowerCase();
         msg = msg.replaceAll("[^A-Za-z\\{]","");
         key = key.toLowerCase();
         char [] msgArray = msg.toCharArray();
         for(int i = 0; i < msg.length(); i++) {
+            // If statement is used to check that msgArray[i] is a letter or '{' if not it's skipped
             if(Character.isLetter(msgArray[i]) || msgArray[i] == '{') {
+                // Fetches the offset and limits it to the range of key's length.
                 int offset = key.charAt(i % key.length());
                 if(Character.isLetter(offset) || offset == '{') {
+                    // Checks to see if msgArray[i] is the last possible character and that
+                    // the offset would move it beyond the possible letters then offset msgArray[i]
+                    // back by 'a' - 1
                     if(msgArray[i] == '{' && offset > 'a') {
                         msgArray[i] = 'a' - 1;
                     }
+                // subtract 'a' from the offset so that the offset is aligned starting from 0
+                // rather than 97 add add it to msgArray[i].
                 offset -= 'a';
                 msgArray[i] += offset;
                 }
             }
         }
+        // convert the character array msgArray into a String and replace mEncryptedMsg with the value.
         mEncryptedMsg = new String(msgArray);
         
 
@@ -61,7 +74,7 @@ public class EncryptedMessage {
         char [] msgArray = mEncryptedMsg.replaceAll("[^A-Za-z\\{]","").toLowerCase().toCharArray();
         for (int i=0; i < msgArray.length; i++) {
             if (Character.isLetter(msgArray[i]) || msgArray[i] == '{') {
-                // The offset is limited to the range on key's length.
+                // The offset is limited to the range of key's length.
                 int offset = key.charAt(i % key.length());
                 // The first lowercase letter ascii is subtracted from the offset  
                 msgArray[i] -= offset - 'a';
